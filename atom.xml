@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>半 岛</title>
+  
+  <subtitle>Quick notes</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://creatorship.github.io/"/>
+  <updated>2018-11-11T02:00:24.206Z</updated>
+  <id>https://creatorship.github.io/</id>
+  
+  <author>
+    <name>JF</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS上安装nginx</title>
+    <link href="https://creatorship.github.io/2018/11/11/CentOS%E4%B8%8A%E5%AE%89%E8%A3%85nginx/"/>
+    <id>https://creatorship.github.io/2018/11/11/CentOS上安装nginx/</id>
+    <published>2018-11-11T01:59:48.728Z</published>
+    <updated>2018-11-11T02:00:24.206Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><blockquote><p>呃，之前双十一阿里云打折，然后加了一个团购团，直接折上折，平时100多大洋/月的服务器，然后我300块买了三年/手动滑稽。马爸爸可真是财大气粗啊，哈哈。于是准备之后在这台服务器上部署自己的博客网站和老爸店里的网站，开始做准备工作吧～</p></blockquote><hr><p><em>Nginx</em> (engine x) 是一个高性能的HTTP和反向代理服务，同时也是一款轻量级的Web服务器。优点是占有内存少，并发能力强。我一般把它用来当做网页服务器容器。话不多说，开始上手。</p><h2 id="2-安装依赖"><a href="#2-安装依赖" class="headerlink" title="2.安装依赖"></a>2.安装依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel</span><br></pre></td></tr></table></figure><h2 id="3-下载tar包"><a href="#3-下载tar包" class="headerlink" title="3.下载tar包"></a>3.下载tar包</h2><h3 id="3-1-创建存放路径"><a href="#3-1-创建存放路径" class="headerlink" title="3.1.创建存放路径"></a>3.1.创建存放路径</h3><ol><li>cd /usr/local</li><li>mkdir nginx</li><li>cd nginx</li></ol><h3 id="3-2-下载tar包"><a href="#3-2-下载tar包" class="headerlink" title="3.2.下载tar包"></a>3.2.下载tar包</h3><blockquote><p>这里我们使用wget来下载网络上的tar包</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.13.7.tar.gz</span><br></pre></td></tr></table></figure><ul><li>如果提示找不到命令，说明我们的服务器上还没有装wget，使用yum装之</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure><ul><li>然后我们解压tar包到当前目录</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf nginx-1.13.7.tar.gz</span><br></pre></td></tr></table></figure><h2 id="3-安装Nginx"><a href="#3-安装Nginx" class="headerlink" title="3.安装Nginx"></a>3.安装Nginx</h2><ol><li>cd /usr/local/nginx  进入nginx目录</li><li>./configure  执行配置</li><li>make  编译</li><li>make install  安装</li></ol><p>OK！等待安装完毕就可以使用了</p><h2 id="4-Nginx常用命令"><a href="#4-Nginx常用命令" class="headerlink" title="4.Nginx常用命令"></a>4.Nginx常用命令</h2><h3 id="4-1-修改配置文件"><a href="#4-1-修改配置文件" class="headerlink" title="4.1.修改配置文件"></a>4.1.修改配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure><ul><li>利用vim编辑器修改配置，指定项目路径配置端口即可</li></ul><p>示例（写到http{}里面）：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">listen       8787;</span><br><span class="line">server_name  192.168.10.249;</span><br><span class="line">location / &#123;</span><br><span class="line">        root   crm\dist;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>listen：访问端口</li><li>server_name：服务器ip</li><li>location/root： 项目存放根目录（index目录）</li><li>location/index： 网页入口</li></ul><h3 id="4-2-启动-停止-重启"><a href="#4-2-启动-停止-重启" class="headerlink" title="4.2.启动/停止/重启"></a>4.2.启动/停止/重启</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line">启动 ./nginx -s start</span><br><span class="line">停止 ./nginx -s stop</span><br><span class="line">重启 ./nginx -s restart</span><br></pre></td></tr></table></figure><h3 id="4-3-访问"><a href="#4-3-访问" class="headerlink" title="4.3.访问"></a>4.3.访问</h3><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/centos/n2.png" alt="images"></p><p>完毕，收工！</p><h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h2><blockquote><p>Nginx作为web服务器还是非常强大的，可谓简单易用。借用同学的一句话。内事不决问百度，外事不决问谷歌，此乃恒久之道也。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;h2 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot; title=&quot;1.前言&quot;&gt;&lt;/a&gt;1.前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;呃，之前双十一阿里云打折，然后加了一个团购团，直接折上折，平时100多大洋/月的服务器，
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="https://creatorship.github.io/categories/linux/"/>
+    
+      <category term="nginx" scheme="https://creatorship.github.io/categories/linux/nginx/"/>
+    
+    
+      <category term="centos" scheme="https://creatorship.github.io/tags/centos/"/>
+    
+      <category term="linux" scheme="https://creatorship.github.io/tags/linux/"/>
+    
+      <category term="nginx" scheme="https://creatorship.github.io/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux利用SSH免密登陆和设置别名</title>
+    <link href="https://creatorship.github.io/2018/11/11/Linux%E5%88%A9%E7%94%A8SSH%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86%E5%92%8C%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D/"/>
+    <id>https://creatorship.github.io/2018/11/11/Linux利用SSH免密登陆和设置别名/</id>
+    <published>2018-11-11T01:55:33.176Z</published>
+    <updated>2018-11-11T01:55:33.176Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><blockquote><p>小公司啊，本职开发兼职运维、DBA。欲哭无泪/摊手。嘛，祸兮福所倚，借此机会，学习一波Linux。</p></blockquote><p>之前用Linux的时候，总觉得ssh连接服务器的时候每次都要输入密码，开始觉得还好，但是由于分布式项目，每次都要来回切换各种内网服务器，输入密码的频率极高。秉承“懒”的极致，学习了ssh免密登陆和设置别名。</p><h2 id="2-SSH免密登陆"><a href="#2-SSH免密登陆" class="headerlink" title="2.SSH免密登陆"></a>2.SSH免密登陆</h2><ul><li>假设现在有两台机器A和B，现在B机器想免密登陆A</li></ul><h3 id="2-1-生成ssh-key"><a href="#2-1-生成ssh-key" class="headerlink" title="2.1.生成ssh-key"></a>2.1.生成ssh-key</h3><p>1.首先先在B机器生成一个ssh-key，如下图</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa  然后一路回车</span><br></pre></td></tr></table></figure><ul><li>备注：若提示找不到ssh-keygen命令，说明本机未安装git client；利用yum安装之</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install git</span><br></pre></td></tr></table></figure><h2 id="2-2-授权"><a href="#2-2-授权" class="headerlink" title="2.2.授权"></a>2.2.授权</h2><p>1.后将生成的公钥复制到A机器～/.ssh/authorized_keys 中，使用命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub root@A机器ip</span><br></pre></td></tr></table></figure><p>2.现在直接连接服务器吧 ssh root@ip</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/centos/l2.png" alt="images"></p><h2 id="3-设置别名"><a href="#3-设置别名" class="headerlink" title="3.设置别名"></a>3.设置别名</h2><h3 id="3-1-基础命令"><a href="#3-1-基础命令" class="headerlink" title="3.1.基础命令"></a>3.1.基础命令</h3><ul><li>Linux中有时候命令过长是可以设置别名偷哈懒</li></ul><ol><li>alias  查看当前别名列表</li><li>设置别名<ul><li>临时生效（作用于当前回话）：alias [别名]=‘[具体命令]’  如 alias ll=‘ls -ll’</li><li>永久生效：修改根目录~/.bashrc；利用vim编辑器修改；mac里面是~/.bash_profile;   修改完后source ~/.bash_profile生效;下图以mac为例</li></ul></li></ol><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/centos/l3.png" alt="images"></p><h3 id="3-2-简化ssh"><a href="#3-2-简化ssh" class="headerlink" title="3.2.简化ssh"></a>3.2.简化ssh</h3><ul><li>有了别名，我们就可以简化我们的ssh连接了，参照3.1简化你的连接吧</li></ul><h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><blockquote><p>Linux还是得系统学一遍呀，感觉挺有意思的</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot; title=&quot;1.前言&quot;&gt;&lt;/a&gt;1.前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;小公司啊，本职开发兼职运维、DBA。欲哭无泪/摊手。嘛，祸兮福所倚，借此机会，学习一波Linux。
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="https://creatorship.github.io/categories/linux/"/>
+    
+      <category term="ssh" scheme="https://creatorship.github.io/categories/linux/ssh/"/>
+    
+    
+      <category term="centos" scheme="https://creatorship.github.io/tags/centos/"/>
+    
+      <category term="linux" scheme="https://creatorship.github.io/tags/linux/"/>
+    
+      <category term="ssh" scheme="https://creatorship.github.io/tags/ssh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac神器-brew安装和使用</title>
+    <link href="https://creatorship.github.io/2018/11/10/Mac%E7%A5%9E%E5%99%A8-brew%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
+    <id>https://creatorship.github.io/2018/11/10/Mac神器-brew安装和使用/</id>
+    <published>2018-11-10T02:31:29.000Z</published>
+    <updated>2018-11-11T01:55:33.173Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><blockquote><p>最近自考完，紧绷的神经算是得以放松，也算告一段落了。之前呢，对macOS憧憬已久，用了一周后，感觉进入了新世界，视网膜屏幕、优秀的后台管理机制、完爆windows的终端和触摸板。噫，真香～ </p></blockquote><h2 id="2-进入正题"><a href="#2-进入正题" class="headerlink" title="2.进入正题"></a>2.进入正题</h2><p>说到mac的终端，就不得不说到brew，mac下的一个包管理工具。其功能类似于centOS的yum和ubuntu的apt-get。有了它后就再也不用到处找资源装环境了，一句命令解决之！</p><h2 id="3-安装"><a href="#3-安装" class="headerlink" title="3.安装"></a>3.安装</h2><p>打开mac终端输入命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure><p>备注：如果这里提示当前目录不存在，直接回车即创建</p><p>目录：</p><ol><li>brew 安装目录 /usr/local/Cellar</li><li>brew 配置目录 /usr/local/etc</li><li>brew 命令目录 /usr/local/bin </li></ol><h2 id="4-基本使用"><a href="#4-基本使用" class="headerlink" title="4.基本使用"></a>4.基本使用</h2><ul><li><p>update brew    更新brew</p></li><li><p>brew install [应用名字，如nodejs]    安装环境</p><p>示例：</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mac/ter2.png" alt="images"></p></li><li><p>brew list    查看当前安装的列表n</p></li><li><p>brew uninstall [应用名]    卸载应用</p></li><li><p>brew services [command] {应用名}    利用brew来执行应用服务命令</p><p><em>以启动/停止nginx为例</em>：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo brew services start/stop/restart nginx</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mac/ter4.png" alt="images"></p><p><em>启动成功，正常访问：</em></p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mac/ter5.png" alt="images"></p></li><li><p>brew info [应用名字 ]    查看应用安装信息，如安装路径；命令路径等</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mac/ter3.png" alt="images"></p><p>以上只是一些常用的功能，更多用法用brew help来查看吧～</p></li></ul><h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h2><blockquote><p>其实brew不帮助你装了软件，还帮你配置了各类环境变量。如此神器，还不快快使用！</p></blockquote><p>人老了，也健忘，意识到写博客的重要性。人生路漫漫，还需加倍的努力啊。</p><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot; title=&quot;1.前言&quot;&gt;&lt;/a&gt;1.前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;最近自考完，紧绷的神经算是得以放松，也算告一段落了。之前呢，对macOS憧憬已久，用了一周后，感觉
+      
+    
+    </summary>
+    
+      <category term="mac" scheme="https://creatorship.github.io/categories/mac/"/>
+    
+      <category term="brew" scheme="https://creatorship.github.io/categories/mac/brew/"/>
+    
+    
+      <category term="mac" scheme="https://creatorship.github.io/tags/mac/"/>
+    
+      <category term="brew" scheme="https://creatorship.github.io/tags/brew/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>北岛以北，樱花绽</title>
+    <link href="https://creatorship.github.io/2018/05/02/dream/"/>
+    <id>https://creatorship.github.io/2018/05/02/dream/</id>
+    <published>2018-05-02T03:52:29.000Z</published>
+    <updated>2018-11-11T02:22:54.314Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/g6.jpg" alt="images"><br><img src="https://gitee.com/creator_eyw/static/raw/master/img/g7.jpg" alt="images"><br><img src="https://gitee.com/creator_eyw/static/raw/master/img/g1.jpg" alt="images"><br><img src="https://gitee.com/creator_eyw/static/raw/master/img/g2.jpg" alt="images"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://gitee.com/creator_eyw/static/raw/master/img/g6.jpg&quot; alt=&quot;images&quot;&gt;&lt;br&gt;&lt;img src=&quot;https://gitee.com/creator_eyw/static/raw
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
