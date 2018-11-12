@@ -90,7 +90,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="centos,linux,ssh," />
+  <meta name="keywords" content="centos,linux,jenkins,hexo," />
 
 
 
@@ -108,20 +108,20 @@
 
 
 
-<meta name="description" content="前言 小公司啊，本职开发兼职运维、DBA。欲哭无泪/摊手。嘛，祸兮福所倚，借此机会，学习一波Linux。  之前用Linux的时候，总觉得ssh连接服务器的时候每次都要输入密码，开始觉得还好，但是由于分布式项目，每次都要来回切换各种内网服务器，输入密码的频率极高。秉承“懒”的极致，学习了ssh免密登陆和设置别名。 SSH免密登陆 假设现在有两台机器A和B，现在B机器想免密登陆A  生成ssh-ke">
-<meta name="keywords" content="centos,linux,ssh">
+<meta name="description" content="前言 前两天把自己以前搭的博客弄到服务器上面丢到了nginx里面。但是问题是，每次自己要发布博客时，难道都要重新打一个包发到服务器上面解压缩。就在想能不能我每次提交后，让服务器执行一个shell脚本实现动态刷新。思来想去，好像jenkins能实现这种场景，于是乎，撸起袖子开干吧～  准备工作 先说一下我的思路。我平时一般在Mac上面用markdown写博客，然后push到github上去。然后服">
+<meta name="keywords" content="centos,linux,jenkins,hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux利用SSH免密登陆和设置别名">
-<meta property="og:url" content="https://creatorship.github.io/2018/11/12/Linux利用SSH免密登陆和设置别名/index.html">
+<meta property="og:title" content="Jenkins自动化管理hexo">
+<meta property="og:url" content="https://creatorship.github.io/2018/11/12/Jenkins自动化管理hexo/index.html">
 <meta property="og:site_name" content="半 岛">
-<meta property="og:description" content="前言 小公司啊，本职开发兼职运维、DBA。欲哭无泪/摊手。嘛，祸兮福所倚，借此机会，学习一波Linux。  之前用Linux的时候，总觉得ssh连接服务器的时候每次都要输入密码，开始觉得还好，但是由于分布式项目，每次都要来回切换各种内网服务器，输入密码的频率极高。秉承“懒”的极致，学习了ssh免密登陆和设置别名。 SSH免密登陆 假设现在有两台机器A和B，现在B机器想免密登陆A  生成ssh-ke">
+<meta property="og:description" content="前言 前两天把自己以前搭的博客弄到服务器上面丢到了nginx里面。但是问题是，每次自己要发布博客时，难道都要重新打一个包发到服务器上面解压缩。就在想能不能我每次提交后，让服务器执行一个shell脚本实现动态刷新。思来想去，好像jenkins能实现这种场景，于是乎，撸起袖子开干吧～  准备工作 先说一下我的思路。我平时一般在Mac上面用markdown写博客，然后push到github上去。然后服">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/centos/linux.jpg">
-<meta property="og:updated_time" content="2018-11-12T15:24:27.735Z">
+<meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/title.jpg">
+<meta property="og:updated_time" content="2018-11-12T18:10:08.711Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux利用SSH免密登陆和设置别名">
-<meta name="twitter:description" content="前言 小公司啊，本职开发兼职运维、DBA。欲哭无泪/摊手。嘛，祸兮福所倚，借此机会，学习一波Linux。  之前用Linux的时候，总觉得ssh连接服务器的时候每次都要输入密码，开始觉得还好，但是由于分布式项目，每次都要来回切换各种内网服务器，输入密码的频率极高。秉承“懒”的极致，学习了ssh免密登陆和设置别名。 SSH免密登陆 假设现在有两台机器A和B，现在B机器想免密登陆A  生成ssh-ke">
-<meta name="twitter:image" content="https://gitee.com/creator_eyw/static/raw/master/img/centos/linux.jpg">
+<meta name="twitter:title" content="Jenkins自动化管理hexo">
+<meta name="twitter:description" content="前言 前两天把自己以前搭的博客弄到服务器上面丢到了nginx里面。但是问题是，每次自己要发布博客时，难道都要重新打一个包发到服务器上面解压缩。就在想能不能我每次提交后，让服务器执行一个shell脚本实现动态刷新。思来想去，好像jenkins能实现这种场景，于是乎，撸起袖子开干吧～  准备工作 先说一下我的思路。我平时一般在Mac上面用markdown写博客，然后push到github上去。然后服">
+<meta name="twitter:image" content="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/title.jpg">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://creatorship.github.io/2018/11/12/Linux利用SSH免密登陆和设置别名/"/>
+  <link rel="canonical" href="https://creatorship.github.io/2018/11/12/Jenkins自动化管理hexo/"/>
 
 
 
 
 
-  <title>Linux利用SSH免密登陆和设置别名 | 半 岛</title>
+  <title>Jenkins自动化管理hexo | 半 岛</title>
   
 
 
@@ -327,7 +327,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://creatorship.github.io/2018/11/12/Linux利用SSH免密登陆和设置别名/">
+    <link itemprop="mainEntityOfPage" href="https://creatorship.github.io/2018/11/12/Jenkins自动化管理hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JF">
@@ -344,7 +344,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux利用SSH免密登陆和设置别名</h1>
+          <h1 class="post-title" itemprop="name headline">Jenkins自动化管理hexo</h1>
         
 
         <div class="post-meta">
@@ -356,7 +356,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T23:24:27+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T23:33:29+08:00">
                 2018-11-12
               </time>
             
@@ -379,8 +379,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/jenkins/" itemprop="url" rel="index">
+                    <span itemprop="name">jenkins</span>
                   </a>
                 </span>
 
@@ -390,8 +390,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/ssh/" itemprop="url" rel="index">
-                    <span itemprop="name">ssh</span>
+                  <a href="/categories/jenkins/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
                   </a>
                 </span>
 
@@ -430,9 +430,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://gitee.com/creator_eyw/static/raw/master/img/centos/linux.jpg" rel="gallery_cjoemi6xz0004zh6bqn9vdzlm"
+                 href="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/title.jpg" rel="gallery_cjoemi6xv0001zh6bild3bpqw"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://gitee.com/creator_eyw/static/raw/master/img/centos/linux.jpg" itemprop="contentUrl"/>
+                <img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/title.jpg" itemprop="contentUrl"/>
               </a>
             
           
@@ -443,41 +443,77 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>小公司啊，本职开发兼职运维、DBA。欲哭无泪/摊手。嘛，祸兮福所倚，借此机会，学习一波Linux。</p>
+        <hr>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>前两天把自己以前搭的博客弄到服务器上面丢到了nginx里面。但是问题是，每次自己要发布博客时，难道都要重新打一个包发到服务器上面解压缩。就在想能不能我每次提交后，让服务器执行一个shell脚本实现动态刷新。思来想去，好像jenkins能实现这种场景，于是乎，撸起袖子开干吧～</p>
 </blockquote>
-<p>之前用Linux的时候，总觉得ssh连接服务器的时候每次都要输入密码，开始觉得还好，但是由于分布式项目，每次都要来回切换各种内网服务器，输入密码的频率极高。秉承“懒”的极致，学习了ssh免密登陆和设置别名。</p>
-<h2 id="SSH免密登陆"><a href="#SSH免密登陆" class="headerlink" title="SSH免密登陆"></a>SSH免密登陆</h2><ul>
-<li>假设现在有两台机器A和B，现在B机器想免密登陆A</li>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li><strong><em>先说一下我的思路。</em></strong>我平时一般在Mac上面用markdown写博客，然后push到github上去。然后服务器上面装好git后将项目clone下来，再利用jenkins检测到我push后，执行shell脚本去pull博客代码。因为项目是丢在nginx里面，pull后就可以直接看到更新后的内容了。</li>
 </ul>
-<h3 id="生成ssh-key"><a href="#生成ssh-key" class="headerlink" title="生成ssh-key"></a>生成ssh-key</h3><p>1.首先先在B机器生成一个ssh-key，如下图</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa  然后一路回车</span><br></pre></td></tr></table></figure>
-<ul>
-<li>备注：若提示找不到ssh-keygen命令，说明本机未安装git client；利用yum安装之</li>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j4.png" alt="images"></p>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>服务器需要安装git来动态pull博客代码，直接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git</span><br></pre></td></tr></table></figure>
+<h3 id="安装Jenkins"><a href="#安装Jenkins" class="headerlink" title="安装Jenkins"></a>安装Jenkins</h3><p>1.这里我是安装的最新版，命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br><span class="line">sudo yum install jenkins</span><br></pre></td></tr></table></figure>
+<p>2.启动jenkins</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start jenkins</span><br></pre></td></tr></table></figure>
+<p>jenkins的默认端口号是8080，现在打开浏览器输入你的ip地址加上8080端口即可出现如下画面</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j5.png" alt="images"></p>
+<p>3.按照提示找到对应目录下的密码复制上去即可，查看命令如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/lib/jenkins/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure>
+<p>4.选择默认插件安装，最新版本是带了Git相关的插件的，安装即用</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/jstart.png" alt="images"></p>
+<p>5.后面就是添加管理员巴拉巴拉的，最后进入初始页面，准备创建一个新的任务</p>
+<h2 id="进入正题"><a href="#进入正题" class="headerlink" title="进入正题"></a>进入正题</h2><ul>
+<li>好了，准备工作做完我们开始正题</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install git</span><br></pre></td></tr></table></figure>
-<h2 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h2><p>1.后将生成的公钥复制到A机器～/.ssh/authorized_keys 中，使用命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub root@A机器ip</span><br></pre></td></tr></table></figure>
-<p>2.现在直接连接服务器吧 ssh root@ip</p>
-<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/centos/l2.png" alt="images"></p>
-<h2 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h2><h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><ul>
-<li>Linux中有时候命令过长是可以设置别名偷哈懒</li>
-</ul>
+<p>###创建任务</p>
+<p>首先创建一个新的任务，选择第一个选项，构建一个自由风格的软件项目</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j6.png" alt="images"></p>
+<h3 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h3><p>目的是为了让jenkins从对应仓库拉取代码</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j7.png" alt="images"></p>
+<h3 id="配置触发器"><a href="#配置触发器" class="headerlink" title="配置触发器"></a>配置触发器</h3><p>这里选择轮询（poll）SCM，下面是一个定时器的cron表达式，这里是指每隔十分钟运行一次当前任务</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j8.png" alt="images"></p>
+<h3 id="配置shell"><a href="#配置shell" class="headerlink" title="配置shell"></a>配置shell</h3><p>最后配置shell脚本，跟我们之前提到的一样，这里只需要到你的博客代码指定的地方（nginx映射的路径， 如下一图），pull一下代码即可，如下二图</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j9.png" alt="images"></p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j10.png" alt="images"></p>
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p>好了，最后我们可以运行这个任务了</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j11.png" alt="images"></p>
+<p>我们点进入进去看到里面的构建历史记录</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j12.png" alt="images"></p>
+<p>OK!成功后就是下面的样子，如果错误，就根据控制台打印的日志，具体问题具体分析。</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j14.png" alt="images"></p>
+<h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><h2 id="无权限"><a href="#无权限" class="headerlink" title="无权限"></a>无权限</h2><p>当时遇到的第一个问题就是没有权限执行某个具体的操作，控制台包如下错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xxxx Permission denied</span><br><span class="line">Build step &apos;执行 shell&apos; marked build as failure</span><br><span class="line">Finished: FAILURE</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>之前在网上查了很久，无非就是说权限有问题，让我把jenkins目录的权限设大，还有什么用sudo来启动jenkins，但是都没有用，无奈问了下哥们，最终定位到是配置文件用户组权限的问题。</p>
+</blockquote>
+<p>这个问题其实很简单，让我们先看看jenkins的配置文件。先看看jenkins相关路径，命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ql jenkins</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j15.png" alt="images"></p>
+<p>ok，定位到路径，vim之</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j16.png" alt="images"></p>
+<p>可以看到我们配置文件里，默认jenkins使用的用户一个名为‘jenkins’的用户，如果你用 cat /etc/passwd 就可以看见‘jenkins’这个用户对应的权限，是没有我们设定目录的权限的。现在有两种方案可行：</p>
 <ol>
-<li>alias  查看当前别名列表</li>
-<li>设置别名<ul>
-<li>临时生效（作用于当前回话）：alias [别名]=‘[具体命令]’  如 alias ll=‘ls -ll’</li>
-<li>永久生效：修改根目录~/.bashrc；利用vim编辑器修改；mac里面是~/.bash_profile;   修改完后source ~/.bash_profile生效;下图以mac为例</li>
-</ul>
-</li>
+<li>将上图的‘JENKINS_USER’对应的value改为root，什么都解决了，包括之后的问题。意味着jenkins拥有root最高权限。但是缺点是听说之前老版本的jenkins是有安全漏洞的，要是有人把你的jenkins搞了，然后就可以利用jenkins在你服务器上执行一些脚本，emmm细思极恐</li>
+<li>将我们要操作的目录，也就是上面配置的博客目录/home/blog/bandao的权限赋给‘jenkins’这个用户，执行下面的命令</li>
 </ol>
-<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/centos/l3.png" alt="images"></p>
-<h3 id="简化ssh"><a href="#简化ssh" class="headerlink" title="简化ssh"></a>简化ssh</h3><ul>
-<li>有了别名，我们就可以简化我们的ssh连接了，参照3.1简化你的连接吧</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
-<p>Linux还是得系统学一遍呀，感觉挺有意思的</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R jenkins[用户名]:jenkins [这是组名]/home/blog/bandao</span><br></pre></td></tr></table></figure>
+<p>这里解释一下， chmod能改变权限，-R是目录下所有文件，对目前目录下的所有档案与子目录进行相同的拥有者变更(即以递回的方式逐个变更) </p>
+<p>ok，这个问题解决！</p>
+<h2 id="git-pull主机密钥验证失败"><a href="#git-pull主机密钥验证失败" class="headerlink" title="git pull主机密钥验证失败"></a>git pull主机密钥验证失败</h2><p>来来，这是刚刚构建很容易出现的问题，除非你像刚刚上面第一个坑那样把jenkins的配置文件的用户改为root，否则就出现下面这个错误</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j17.png" alt="images"></p>
+<p>大概的意思就是主机无权限，无法读取远程仓库。嘿，我当时就纳闷了，我手动pull是没问题的啊，而且我github都设置了ssh-key的啊。后来发现，特么我进去是root用户，肯定没问题啊。报这个错本质上说的还是‘jenkins’这个用户没有权限访问远程仓库！</p>
+<p>ok，定位到问题就好办。首先切换成’jenkins‘这个用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su -s /bin/bash jenkins</span><br></pre></td></tr></table></figure>
+<p>第二步生成专属于‘jenkins’用户的ssh-key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa 后一路回车</span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>第三步复制上面cat出来的公钥到github</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j18.png" alt="images"></p>
+<p>现在试试用‘jenkins’用户 pull一下</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j19.png" alt="images"></p>
+<p>搞定，收工！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>晚上和以前的前辈喝了酒，回来突然想把这篇博客写了，头晕昏昏的，写了两个多小时，记录一下自己踩的坑，备忘。嘛，喝瓶哇哈哈，继续嗨～</p>
 
       
     </div>
@@ -493,12 +529,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/11/12/Linux利用SSH免密登陆和设置别名/">Linux利用SSH免密登陆和设置别名</a></p>
+  <p><span>本文标题:</span><a href="/2018/11/12/Jenkins自动化管理hexo/">Jenkins自动化管理hexo</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 JF 的个人博客">JF</a></p>
   <p><span>发布时间:</span>2018年11月12日 - 23:11</p>
-  <p><span>最后更新:</span>2018年11月12日 - 23:11</p>
-  <p><span>原始链接:</span><a href="/2018/11/12/Linux利用SSH免密登陆和设置别名/" title="Linux利用SSH免密登陆和设置别名">https://creatorship.github.io/2018/11/12/Linux利用SSH免密登陆和设置别名/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://creatorship.github.io/2018/11/12/Linux利用SSH免密登陆和设置别名/"  aria-label="复制成功！"></i></span>
+  <p><span>最后更新:</span>2018年11月13日 - 02:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/12/Jenkins自动化管理hexo/" title="Jenkins自动化管理hexo">https://creatorship.github.io/2018/11/12/Jenkins自动化管理hexo/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://creatorship.github.io/2018/11/12/Jenkins自动化管理hexo/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> </p>
   <p></p>
@@ -535,7 +571,9 @@
           
             <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
           
-            <a href="/tags/ssh/" rel="tag"><i class="fa fa-tag"></i> ssh</a>
+            <a href="/tags/jenkins/" rel="tag"><i class="fa fa-tag"></i> jenkins</a>
+          
+            <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
           
         </div>
       
@@ -548,8 +586,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/12/CentOS上安装nginx/" rel="next" title="CentOS上安装nginx">
-                <i class="fa fa-chevron-left"></i> CentOS上安装nginx
+              <a href="/2018/11/12/Linux利用SSH免密登陆和设置别名/" rel="next" title="Linux利用SSH免密登陆和设置别名">
+                <i class="fa fa-chevron-left"></i> Linux利用SSH免密登陆和设置别名
               </a>
             
           </div>
@@ -557,10 +595,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/12/Jenkins自动化管理hexo/" rel="prev" title="Jenkins自动化管理hexo">
-                Jenkins自动化管理hexo <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -771,7 +805,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH免密登陆"><span class="nav-number">2.</span> <span class="nav-text">SSH免密登陆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成ssh-key"><span class="nav-number">2.1.</span> <span class="nav-text">生成ssh-key</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授权"><span class="nav-number">3.</span> <span class="nav-text">授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置别名"><span class="nav-number">4.</span> <span class="nav-text">设置别名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础命令"><span class="nav-number">4.1.</span> <span class="nav-text">基础命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简化ssh"><span class="nav-number">4.2.</span> <span class="nav-text">简化ssh</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装git"><span class="nav-number">2.1.</span> <span class="nav-text">安装git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Jenkins"><span class="nav-number">2.2.</span> <span class="nav-text">安装Jenkins</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入正题"><span class="nav-number">3.</span> <span class="nav-text">进入正题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置git"><span class="nav-number">3.1.</span> <span class="nav-text">配置git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置触发器"><span class="nav-number">3.2.</span> <span class="nav-text">配置触发器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置shell"><span class="nav-number">3.3.</span> <span class="nav-text">配置shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建"><span class="nav-number">3.4.</span> <span class="nav-text">构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的坑"><span class="nav-number">4.</span> <span class="nav-text">遇到的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无权限"><span class="nav-number">5.</span> <span class="nav-text">无权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-pull主机密钥验证失败"><span class="nav-number">6.</span> <span class="nav-text">git pull主机密钥验证失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

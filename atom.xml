@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://creatorship.github.io/"/>
-  <updated>2018-11-12T15:24:27.735Z</updated>
+  <updated>2018-11-12T18:10:08.711Z</updated>
   <id>https://creatorship.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jenkins自动化管理hexo</title>
+    <link href="https://creatorship.github.io/2018/11/12/Jenkins%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AE%A1%E7%90%86hexo/"/>
+    <id>https://creatorship.github.io/2018/11/12/Jenkins自动化管理hexo/</id>
+    <published>2018-11-12T15:33:29.000Z</published>
+    <updated>2018-11-12T18:10:08.711Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>前两天把自己以前搭的博客弄到服务器上面丢到了nginx里面。但是问题是，每次自己要发布博客时，难道都要重新打一个包发到服务器上面解压缩。就在想能不能我每次提交后，让服务器执行一个shell脚本实现动态刷新。思来想去，好像jenkins能实现这种场景，于是乎，撸起袖子开干吧～</p></blockquote><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul><li><strong><em>先说一下我的思路。</em></strong>我平时一般在Mac上面用markdown写博客，然后push到github上去。然后服务器上面装好git后将项目clone下来，再利用jenkins检测到我push后，执行shell脚本去pull博客代码。因为项目是丢在nginx里面，pull后就可以直接看到更新后的内容了。</li></ul><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j4.png" alt="images"></p><h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>服务器需要安装git来动态pull博客代码，直接</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git</span><br></pre></td></tr></table></figure><h3 id="安装Jenkins"><a href="#安装Jenkins" class="headerlink" title="安装Jenkins"></a>安装Jenkins</h3><p>1.这里我是安装的最新版，命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</span><br><span class="line">sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span><br><span class="line">sudo yum install jenkins</span><br></pre></td></tr></table></figure><p>2.启动jenkins</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start jenkins</span><br></pre></td></tr></table></figure><p>jenkins的默认端口号是8080，现在打开浏览器输入你的ip地址加上8080端口即可出现如下画面</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j5.png" alt="images"></p><p>3.按照提示找到对应目录下的密码复制上去即可，查看命令如下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/lib/jenkins/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure><p>4.选择默认插件安装，最新版本是带了Git相关的插件的，安装即用</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/jstart.png" alt="images"></p><p>5.后面就是添加管理员巴拉巴拉的，最后进入初始页面，准备创建一个新的任务</p><h2 id="进入正题"><a href="#进入正题" class="headerlink" title="进入正题"></a>进入正题</h2><ul><li>好了，准备工作做完我们开始正题</li></ul><p>###创建任务</p><p>首先创建一个新的任务，选择第一个选项，构建一个自由风格的软件项目</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j6.png" alt="images"></p><h3 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h3><p>目的是为了让jenkins从对应仓库拉取代码</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j7.png" alt="images"></p><h3 id="配置触发器"><a href="#配置触发器" class="headerlink" title="配置触发器"></a>配置触发器</h3><p>这里选择轮询（poll）SCM，下面是一个定时器的cron表达式，这里是指每隔十分钟运行一次当前任务</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j8.png" alt="images"></p><h3 id="配置shell"><a href="#配置shell" class="headerlink" title="配置shell"></a>配置shell</h3><p>最后配置shell脚本，跟我们之前提到的一样，这里只需要到你的博客代码指定的地方（nginx映射的路径， 如下一图），pull一下代码即可，如下二图</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j9.png" alt="images"></p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j10.png" alt="images"></p><h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p>好了，最后我们可以运行这个任务了</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j11.png" alt="images"></p><p>我们点进入进去看到里面的构建历史记录</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j12.png" alt="images"></p><p>OK!成功后就是下面的样子，如果错误，就根据控制台打印的日志，具体问题具体分析。</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j14.png" alt="images"></p><h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><h2 id="无权限"><a href="#无权限" class="headerlink" title="无权限"></a>无权限</h2><p>当时遇到的第一个问题就是没有权限执行某个具体的操作，控制台包如下错误</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xxxx Permission denied</span><br><span class="line">Build step &apos;执行 shell&apos; marked build as failure</span><br><span class="line">Finished: FAILURE</span><br></pre></td></tr></table></figure><blockquote><p>之前在网上查了很久，无非就是说权限有问题，让我把jenkins目录的权限设大，还有什么用sudo来启动jenkins，但是都没有用，无奈问了下哥们，最终定位到是配置文件用户组权限的问题。</p></blockquote><p>这个问题其实很简单，让我们先看看jenkins的配置文件。先看看jenkins相关路径，命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ql jenkins</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j15.png" alt="images"></p><p>ok，定位到路径，vim之</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j16.png" alt="images"></p><p>可以看到我们配置文件里，默认jenkins使用的用户一个名为‘jenkins’的用户，如果你用 cat /etc/passwd 就可以看见‘jenkins’这个用户对应的权限，是没有我们设定目录的权限的。现在有两种方案可行：</p><ol><li>将上图的‘JENKINS_USER’对应的value改为root，什么都解决了，包括之后的问题。意味着jenkins拥有root最高权限。但是缺点是听说之前老版本的jenkins是有安全漏洞的，要是有人把你的jenkins搞了，然后就可以利用jenkins在你服务器上执行一些脚本，emmm细思极恐</li><li>将我们要操作的目录，也就是上面配置的博客目录/home/blog/bandao的权限赋给‘jenkins’这个用户，执行下面的命令</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R jenkins[用户名]:jenkins [这是组名]/home/blog/bandao</span><br></pre></td></tr></table></figure><p>这里解释一下， chmod能改变权限，-R是目录下所有文件，对目前目录下的所有档案与子目录进行相同的拥有者变更(即以递回的方式逐个变更) </p><p>ok，这个问题解决！</p><h2 id="git-pull主机密钥验证失败"><a href="#git-pull主机密钥验证失败" class="headerlink" title="git pull主机密钥验证失败"></a>git pull主机密钥验证失败</h2><p>来来，这是刚刚构建很容易出现的问题，除非你像刚刚上面第一个坑那样把jenkins的配置文件的用户改为root，否则就出现下面这个错误</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j17.png" alt="images"></p><p>大概的意思就是主机无权限，无法读取远程仓库。嘿，我当时就纳闷了，我手动pull是没问题的啊，而且我github都设置了ssh-key的啊。后来发现，特么我进去是root用户，肯定没问题啊。报这个错本质上说的还是‘jenkins’这个用户没有权限访问远程仓库！</p><p>ok，定位到问题就好办。首先切换成’jenkins‘这个用户</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su -s /bin/bash jenkins</span><br></pre></td></tr></table></figure><p>第二步生成专属于‘jenkins’用户的ssh-key</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa 后一路回车</span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure><p>第三步复制上面cat出来的公钥到github</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j18.png" alt="images"></p><p>现在试试用‘jenkins’用户 pull一下</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j19.png" alt="images"></p><p>搞定，收工！</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>晚上和以前的前辈喝了酒，回来突然想把这篇博客写了，头晕昏昏的，写了两个多小时，记录一下自己踩的坑，备忘。嘛，喝瓶哇哈哈，继续嗨～</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;前两天把自己以前搭的博客弄到服务器上面丢到了nginx里面。但是问题是，每次自己要发布博客时，难道都要重
+      
+    
+    </summary>
+    
+      <category term="jenkins" scheme="https://creatorship.github.io/categories/jenkins/"/>
+    
+      <category term="hexo" scheme="https://creatorship.github.io/categories/jenkins/hexo/"/>
+    
+    
+      <category term="centos" scheme="https://creatorship.github.io/tags/centos/"/>
+    
+      <category term="linux" scheme="https://creatorship.github.io/tags/linux/"/>
+    
+      <category term="jenkins" scheme="https://creatorship.github.io/tags/jenkins/"/>
+    
+      <category term="hexo" scheme="https://creatorship.github.io/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux利用SSH免密登陆和设置别名</title>
