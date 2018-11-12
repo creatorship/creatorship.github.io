@@ -117,7 +117,7 @@
 <meta property="og:description" content="前言 前两天把自己以前搭的博客弄到服务器上面丢到了nginx里面。但是问题是，每次自己要发布博客时，难道都要重新打一个包发到服务器上面解压缩。就在想能不能我每次提交后，让服务器执行一个shell脚本实现动态刷新。思来想去，好像jenkins能实现这种场景，于是乎，撸起袖子开干吧～  准备工作 先说一下我的思路。我平时一般在Mac上面用markdown写博客，然后push到github上去。然后服">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/title.jpg">
-<meta property="og:updated_time" content="2018-11-12T18:10:08.711Z">
+<meta property="og:updated_time" content="2018-11-12T18:11:52.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jenkins自动化管理hexo">
 <meta name="twitter:description" content="前言 前两天把自己以前搭的博客弄到服务器上面丢到了nginx里面。但是问题是，每次自己要发布博客时，难道都要重新打一个包发到服务器上面解压缩。就在想能不能我每次提交后，让服务器执行一个shell脚本实现动态刷新。思来想去，好像jenkins能实现这种场景，于是乎，撸起袖子开干吧～  准备工作 先说一下我的思路。我平时一般在Mac上面用markdown写博客，然后push到github上去。然后服">
@@ -430,7 +430,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/title.jpg" rel="gallery_cjoemi6xv0001zh6bild3bpqw"
+                 href="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/title.jpg" rel="gallery_cjoemk9j90002056bw7rc0qb7"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/title.jpg" itemprop="contentUrl"/>
               </a>
@@ -467,8 +467,7 @@
 <h2 id="进入正题"><a href="#进入正题" class="headerlink" title="进入正题"></a>进入正题</h2><ul>
 <li>好了，准备工作做完我们开始正题</li>
 </ul>
-<p>###创建任务</p>
-<p>首先创建一个新的任务，选择第一个选项，构建一个自由风格的软件项目</p>
+<h3 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h3><p>首先创建一个新的任务，选择第一个选项，构建一个自由风格的软件项目</p>
 <p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j6.png" alt="images"></p>
 <h3 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h3><p>目的是为了让jenkins从对应仓库拉取代码</p>
 <p><img src="https://gitee.com/creator_eyw/static/raw/master/img/jenkins/j7.png" alt="images"></p>
@@ -805,7 +804,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装git"><span class="nav-number">2.1.</span> <span class="nav-text">安装git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Jenkins"><span class="nav-number">2.2.</span> <span class="nav-text">安装Jenkins</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入正题"><span class="nav-number">3.</span> <span class="nav-text">进入正题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置git"><span class="nav-number">3.1.</span> <span class="nav-text">配置git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置触发器"><span class="nav-number">3.2.</span> <span class="nav-text">配置触发器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置shell"><span class="nav-number">3.3.</span> <span class="nav-text">配置shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建"><span class="nav-number">3.4.</span> <span class="nav-text">构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的坑"><span class="nav-number">4.</span> <span class="nav-text">遇到的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无权限"><span class="nav-number">5.</span> <span class="nav-text">无权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-pull主机密钥验证失败"><span class="nav-number">6.</span> <span class="nav-text">git pull主机密钥验证失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装git"><span class="nav-number">2.1.</span> <span class="nav-text">安装git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Jenkins"><span class="nav-number">2.2.</span> <span class="nav-text">安装Jenkins</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入正题"><span class="nav-number">3.</span> <span class="nav-text">进入正题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建任务"><span class="nav-number">3.1.</span> <span class="nav-text">创建任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置git"><span class="nav-number">3.2.</span> <span class="nav-text">配置git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置触发器"><span class="nav-number">3.3.</span> <span class="nav-text">配置触发器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置shell"><span class="nav-number">3.4.</span> <span class="nav-text">配置shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建"><span class="nav-number">3.5.</span> <span class="nav-text">构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的坑"><span class="nav-number">4.</span> <span class="nav-text">遇到的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无权限"><span class="nav-number">5.</span> <span class="nav-text">无权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-pull主机密钥验证失败"><span class="nav-number">6.</span> <span class="nav-text">git pull主机密钥验证失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
