@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://creatorship.github.io/"/>
-  <updated>2018-11-21T09:17:33.927Z</updated>
+  <updated>2018-11-22T08:02:55.578Z</updated>
   <id>https://creatorship.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>进程和线程的讨论</title>
+    <link href="https://creatorship.github.io/2018/11/22/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E8%AE%A8%E8%AE%BA/"/>
+    <id>https://creatorship.github.io/2018/11/22/进程和线程的讨论/</id>
+    <published>2018-11-22T06:24:29.000Z</published>
+    <updated>2018-11-22T08:02:55.578Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>这段时间公司比较闲。出来也两年多了，代码敲地越多，越觉得基础知识有多重要，嘛，闲来无事儿随便捣鼓捣鼓充哈电。</p></blockquote><h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><ul><li><strong>进程：</strong>是具有一定独立功能的程序，进程是系统资源分配的一个独立单元。</li><li><strong>线程：</strong>线程进程的一个实体，是CPU调度和分派的基本单位，他是比进程更小的能独立运行的基本单位，线程自己基本上不拥有系统资源(内存)。在运行时，只是暂用一些计数器、寄存器和栈 。</li><li><strong>关系：</strong>一个进程是一个或多个线程的容器</li></ul><p>呃，这样说起来可能还是很模糊。</p><p>简单的讲，系统分配资源（内存）的对象是进程，进程外有一层强制隔离的壳，A进程是没有办法访问到B进程的内存的，如果进程之间要进行通信，就必须使用外部手段比如Socket通信等。而真正执行CPU计算任务的是一个又一个线程，线程之间的通信很方便，同一进程下的线程共享全局变量、静态变量等数据- - 我的理解是这样哈，不知道对不对。</p><h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h2><p>现在有一个软件外包公司（虽然我没去过外包公司，逃）</p><ul><li><strong>CPU：</strong>外包公司，它就是计算机的CPU，承担了所有计算任务。比如对接新项目、判断是否超过公司能力、计算项目成本、预估项目周期、分派给<strong>合适的项目组</strong>、实施开发、交付项目等等。它就像一个巨大的齿轮，时刻在工作运行。</li><li><strong>进程：</strong>进程就好比项目组，它代表CPU能处理的单个任务。每个项目组能独立地运作，实施独立的工程。</li><li><strong>线程：</strong>线程就是程序猿们，就是具体的一个实体。当然一只猿也可以叫做一个项目组。公司派的任务是分配的项目组的，而具体落实实施的是猿。</li><li><strong>进程间的通信：</strong>首先我们要知道，进程和进程间的内存是很难共享的。比如项目组A有5个程序员，项目组B有10个程序员。项目A的程序员不可能是撸项目B的代码吧，因为你没有项目B代码的git权限。当然如果你实在优秀非要两个项目都做，那么就必须经过XXX协商(进程通信比如Socket)，满足两个项目组的约定后方可进入另一个项目组执行任务。</li><li><strong>线程间的通信：</strong>线程间的通信就简单多了，线程间的数据是非常好共享的。项目组A下面的各个程序员本身在一个组里，我可以看到你提交的代码，你可以看到我提交的代码。</li><li><strong>互斥锁：</strong>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。比如公司的洗手间</li><li><strong>信号量：</strong>进程使用的内存地址可以限定使用量，这些内存地址只能给固定数量的线程使用。比如公司的会议室，最多只能允许20人进去开会，如果满了，就要等人出来才能进去。</li><li><strong>互相影响：</strong>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉。比如说项目组A有个程序员猝死了，我不相信你特么还让其他4个人继续开发，项目组B还没有人猝死，OK继续工作（你是魔鬼吗）</li></ul><p>总结一下就是进程是线程的老大哥，管理着总多线程小老弟。</p><h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p>这里容我无耻的转载一波</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/thread/lw.png" alt="images"></p><ul><li>进程是资源分配的最小单位，线程是程序执行的最小单位。</li><li>进程有自己的独立地址空间，每启动一个进程，系统就会为它分配地址空间，建立数据表来维护代码段、堆栈段和数据段，这种操作非常昂贵。而线程是共享进程中的数据的，使用相同的地址空间，因此CPU切换一个线程的花费远比进程要小很多，同时创建一个线程的开销也比进程要小很多。</li><li>线程之间的通信更方便，同一进程下的线程共享全局变量、静态变量等数据，而进程之间的通信需要以通信的方式（IPC)进行。不过如何处理好同步与互斥是编写多线程程序的难点。</li><li>但是多进程程序更健壮，多线程程序只要有一个线程死掉，整个进程也死掉了，而一个进程死掉并不会对另外一个进程造成影响，因为进程有自己独立的地址空间。</li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote><p>这篇文章感觉写的还是很浅薄。嘛，后面再补充吧</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;这段时间公司比较闲。出来也两年多了，代码敲地越多，越觉得基础知识有多重要，嘛，闲来无事儿随便捣鼓捣鼓充哈
+      
+    
+    </summary>
+    
+      <category term="线程" scheme="https://creatorship.github.io/categories/%E7%BA%BF%E7%A8%8B/"/>
+    
+    
+      <category term="线程" scheme="https://creatorship.github.io/tags/%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>OSI七层模型及相关协议学习笔记</title>
