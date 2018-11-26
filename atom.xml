@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bandao.ink/"/>
-  <updated>2018-11-26T00:59:43.007Z</updated>
+  <updated>2018-11-26T06:36:50.596Z</updated>
   <id>http://bandao.ink/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安装https-ssl证书遇到的坑</title>
+    <link href="http://bandao.ink/2018/11/26/%E5%AE%89%E8%A3%85https-ssl%E8%AF%81%E4%B9%A6%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
+    <id>http://bandao.ink/2018/11/26/安装https-ssl证书遇到的坑/</id>
+    <published>2018-11-26T04:31:29.000Z</published>
+    <updated>2018-11-26T06:36:50.596Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>最近阿里云的备案是终于终于下来了，于是乎高高兴兴地把服务器绑定了域名。但是一个周末过去了，用站长工具一查，泥煤的百度硬是一个页面没收录我的。和同学抱怨了这个事情，他让我整一套https来试一下，毕竟http存在被抓包篡改数据的风险。嘛，也不知道这个是不是百度收录的判定标准，上午整的时候也遇到了一些坑，就记录下来。</p></blockquote><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ol><li><strong>服务器</strong>：阿里云ECS</li><li><strong>web容器</strong>： nginx</li><li><strong>系统</strong>：CentOS 7</li></ol><h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><h3 id="申请SSL"><a href="#申请SSL" class="headerlink" title="申请SSL"></a>申请SSL</h3><ul><li>阿里云申请SSL很简单，直接跑到工作台—&gt;服务与产品—&gt;SSL证书</li></ul><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h1.png" alt="images"></p><ul><li>进入证书管理界面后点击“购买证书”，如下图所示，选择免费型DV SSL</li></ul><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h2.png" alt="images"></p><ul><li>申请大概需要5-10分钟左右，随时注意短信邮件，成功后如下图</li></ul><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h3.png" alt="images"></p><ul><li>点击下载，选择对应自己服务器上的web容器，以下以nginx为例，下载完后解压缩包会有两个文件，一个密钥一个解密的。</li></ul><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h4.png" alt="images"></p><h3 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h3><p><strong>备注：</strong>打开443端口，打开443端口，打开443端口！重要的事情说三遍，之前我就是因为在阿里云的安全组里没有开启443端口，一直访问不了，至于怎么打开这里就不多阐述了。</p><ul><li><p>把上一步下载得到的pem和key文件传输到服务器</p></li><li><p>vim编辑nginx配置文件，拉到最下面有个 #HTTP server注释字样，配置</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen       443;</span><br><span class="line">      server_name  bandao.ink;</span><br><span class="line">      root         /home/blog/bandao;</span><br><span class="line">      index       index.html  index.htm;</span><br><span class="line">      ssl         on;</span><br><span class="line">      ssl_certificate     /usr/local/nginx/cert/1551693_bandao.ink.pem;</span><br><span class="line">      ssl_certificate_key /usr/local/nginx/cert/1551693_bandao.ink.key;</span><br><span class="line">      ssl_session_timeout 10m;</span><br><span class="line">      ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">      ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">      location / &#123;</span><br><span class="line">          root   /home/blog/bandao;</span><br><span class="line">          index  index.html index.htm;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure><ul><li><strong>server_name：</strong> 服务器地址</li><li><strong>root：</strong>网站根目录</li><li><strong>index：</strong> 入口类</li><li><strong>ssl：</strong>开启ssl配置</li><li><strong>ssl_certificate：</strong>pem文件存放目录</li><li><strong>ssl_certificate_key：</strong>key文件存放目录</li></ul><h3 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a>搜索引擎优化</h3><p>2015 年 5 月 25 日，<a href="http://zhanzhang.baidu.com/wiki/392" target="_blank" rel="noopener">百度发公告声明</a>已全面支持 HTTPS 网页的收录，使用 HTTPS 的网页被认为更安全，所以在排名上会被优先。 百度还推荐使用 301 重定向，把网站的 HTTP 重定向到 HTTPS 。</p><p>NGINX 配置使用 301 重定向：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  www.bandao.ink;</span><br><span class="line">        return    301 https://$server_name$request_uri;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><p>OK，重启nginx即可重新访问即可看到效果</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h5.png" alt="images"></p><h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><h3 id="nginx-emerg-unknown-directive-ssl错误"><a href="#nginx-emerg-unknown-directive-ssl错误" class="headerlink" title="nginx:[emerg]unknown directive ssl错误"></a>nginx:[emerg]unknown directive ssl错误</h3><p>这是我遇到的第一个坑，在我更新完nginx配置，重启的时候给我报出来，识别不了配置文件中的‘ssl’指令。百度了一下说是因为我们配置这个SSL证书需要引用到nginx的中SSL这模块，然而我们一开始编译的Nginx的时候并没有把SSL模块一起编译进去，所以导致这个错误的出现。</p><h4 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h4><ul><li>开始我以为是要重新安装nginx并编译，但是如果你还能找到nginx当初的安装目录就不用。如下图，我的安装目录当时是和nginx执行目录在一起的，/usr/local/nginx/nginx-1.13.7</li></ul><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h6.png" alt="images"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/nginx-1.13.7</span><br></pre></td></tr></table></figure><ul><li>来到解压目录后重新添加ssl模块</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-http_ssl_module</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h7.png" alt="images"></p><ul><li>make编译【注意不要make install，不然你nginx会被重新覆盖掉】</li></ul><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h8.png" alt="images"></p><ul><li>OK，编译时间在半分钟左右，这个时候你会发现当前安装目录下多了一个objs文件夹，这个文件夹下面有一个nginx程序，这个就是新版本的程序了。</li></ul><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h9.png" alt="images"></p><ul><li>安全起见我们可以把之前的nginx先备份一下，然后把新的程序复制过去覆盖之前的即可</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">备份： cp /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak</span><br><span class="line">覆盖： cp objs/nginx /usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure><ul><li>现在我们可以看看ssl模块是否安装成功</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line">./nginx -V</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h10.png" alt="images"></p><p>如上图，说明安装ssl模块成功了</p><p>ok，重启nginx就可以了</p><h3 id="no-ssl-certificate"><a href="#no-ssl-certificate" class="headerlink" title="no ssl_certificate"></a>no ssl_certificate</h3><p>同样是reload的时候出现nginx: [emerg] no “ssl_certificate” is defined for the “ssl” directive in /usr/local/nginx/conf/nginx.conf:102  这种错误。</p><p>泥煤的，当时就在想，我特么ssl相关的东西都给你配置好了，ssl指令都没问题，你特么一个指定密钥地址的玩意还有问题？ 这个问题整了我一个多小时，最后发现是配置文件里面这里写丢了一个分号，我真是@！%！@¥#@#@¥@！</p><p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h11.png" alt="images"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote><p>哎，这个东西就因为最后遇到那个分号没有写，足足折腾了我一上午的时间，真的是要细心啊！存粹是自己坑自己</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;最近阿里云的备案是终于终于下来了，于是乎高高兴兴地把服务器绑定了域名。但是一个周末过去了，用站长工具一查，泥煤的百
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="http://bandao.ink/categories/linux/"/>
+    
+      <category term="centos" scheme="http://bandao.ink/categories/linux/centos/"/>
+    
+      <category term="https" scheme="http://bandao.ink/categories/linux/centos/https/"/>
+    
+    
+      <category term="centos" scheme="http://bandao.ink/tags/centos/"/>
+    
+      <category term="linux" scheme="http://bandao.ink/tags/linux/"/>
+    
+      <category term="https" scheme="http://bandao.ink/tags/https/"/>
+    
+  </entry>
   
   <entry>
     <title>FreeMarker学习笔记</title>

@@ -90,7 +90,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mac,brew," />
+  <meta name="keywords" content="centos,linux,https," />
 
 
 
@@ -108,20 +108,20 @@
 
 
 
-<meta name="description" content="前言 最近自考完，紧绷的神经算是得以放松，也算告一段落了。之前呢，对macOS憧憬已久，用了一周后，感觉进入了新世界，视网膜屏幕、优秀的后台管理机制、完爆windows的终端和触摸板。噫，真香～   进入正题说到mac的终端，就不得不说到brew，mac下的一个包管理工具。其功能类似于centOS的yum和ubuntu的apt-get。有了它后就再也不用到处找资源装环境了，一句命令解决之！ 安装打">
-<meta name="keywords" content="mac,brew">
+<meta name="description" content="前言 最近阿里云的备案是终于终于下来了，于是乎高高兴兴地把服务器绑定了域名。但是一个周末过去了，用站长工具一查，泥煤的百度硬是一个页面没收录我的。和同学抱怨了这个事情，他让我整一套https来试一下，毕竟http存在被抓包篡改数据的风险。嘛，也不知道这个是不是百度收录的判定标准，上午整的时候也遇到了一些坑，就记录下来。  环境 服务器：阿里云ECS web容器： nginx 系统：CentOS 7">
+<meta name="keywords" content="centos,linux,https">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac神器-brew安装和使用">
-<meta property="og:url" content="http://bandao.ink/2018/11/10/Mac神器-brew安装和使用/index.html">
+<meta property="og:title" content="安装https-ssl证书遇到的坑">
+<meta property="og:url" content="http://bandao.ink/2018/11/26/安装https-ssl证书遇到的坑/index.html">
 <meta property="og:site_name" content="blog | 半岛的博客">
-<meta property="og:description" content="前言 最近自考完，紧绷的神经算是得以放松，也算告一段落了。之前呢，对macOS憧憬已久，用了一周后，感觉进入了新世界，视网膜屏幕、优秀的后台管理机制、完爆windows的终端和触摸板。噫，真香～   进入正题说到mac的终端，就不得不说到brew，mac下的一个包管理工具。其功能类似于centOS的yum和ubuntu的apt-get。有了它后就再也不用到处找资源装环境了，一句命令解决之！ 安装打">
+<meta property="og:description" content="前言 最近阿里云的备案是终于终于下来了，于是乎高高兴兴地把服务器绑定了域名。但是一个周末过去了，用站长工具一查，泥煤的百度硬是一个页面没收录我的。和同学抱怨了这个事情，他让我整一套https来试一下，毕竟http存在被抓包篡改数据的风险。嘛，也不知道这个是不是百度收录的判定标准，上午整的时候也遇到了一些坑，就记录下来。  环境 服务器：阿里云ECS web容器： nginx 系统：CentOS 7">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/mac/459061.jpg">
-<meta property="og:updated_time" content="2018-11-12T15:24:27.732Z">
+<meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/https/title.png">
+<meta property="og:updated_time" content="2018-11-26T06:36:50.596Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac神器-brew安装和使用">
-<meta name="twitter:description" content="前言 最近自考完，紧绷的神经算是得以放松，也算告一段落了。之前呢，对macOS憧憬已久，用了一周后，感觉进入了新世界，视网膜屏幕、优秀的后台管理机制、完爆windows的终端和触摸板。噫，真香～   进入正题说到mac的终端，就不得不说到brew，mac下的一个包管理工具。其功能类似于centOS的yum和ubuntu的apt-get。有了它后就再也不用到处找资源装环境了，一句命令解决之！ 安装打">
-<meta name="twitter:image" content="https://gitee.com/creator_eyw/static/raw/master/img/mac/459061.jpg">
+<meta name="twitter:title" content="安装https-ssl证书遇到的坑">
+<meta name="twitter:description" content="前言 最近阿里云的备案是终于终于下来了，于是乎高高兴兴地把服务器绑定了域名。但是一个周末过去了，用站长工具一查，泥煤的百度硬是一个页面没收录我的。和同学抱怨了这个事情，他让我整一套https来试一下，毕竟http存在被抓包篡改数据的风险。嘛，也不知道这个是不是百度收录的判定标准，上午整的时候也遇到了一些坑，就记录下来。  环境 服务器：阿里云ECS web容器： nginx 系统：CentOS 7">
+<meta name="twitter:image" content="https://gitee.com/creator_eyw/static/raw/master/img/https/title.png">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="http://bandao.ink/2018/11/10/Mac神器-brew安装和使用/"/>
+  <link rel="canonical" href="http://bandao.ink/2018/11/26/安装https-ssl证书遇到的坑/"/>
 
 
 
 
 
-  <title>Mac神器-brew安装和使用 | blog | 半岛的博客</title>
+  <title>安装https-ssl证书遇到的坑 | blog | 半岛的博客</title>
   
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://bandao.ink/2018/11/10/Mac神器-brew安装和使用/">
+    <link itemprop="mainEntityOfPage" href="http://bandao.ink/2018/11/26/安装https-ssl证书遇到的坑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JF">
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mac神器-brew安装和使用</h1>
+          <h1 class="post-title" itemprop="name headline">安装https-ssl证书遇到的坑</h1>
         
 
         <div class="post-meta">
@@ -365,8 +365,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-10T10:31:29+08:00">
-                2018-11-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T12:31:29+08:00">
+                2018-11-26
               </time>
             
 
@@ -388,8 +388,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index">
-                    <span itemprop="name">mac</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -399,8 +399,19 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac/brew/" itemprop="url" rel="index">
-                    <span itemprop="name">brew</span>
+                  <a href="/categories/linux/centos/" itemprop="url" rel="index">
+                    <span itemprop="name">centos</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/centos/https/" itemprop="url" rel="index">
+                    <span itemprop="name">https</span>
                   </a>
                 </span>
 
@@ -439,9 +450,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://gitee.com/creator_eyw/static/raw/master/img/mac/459061.jpg" rel="gallery_cjoxxxa7r0006cn6bu4qrja16"
+                 href="https://gitee.com/creator_eyw/static/raw/master/img/https/title.png" rel="gallery_cjoxxxa7t000acn6b97q024t3"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://gitee.com/creator_eyw/static/raw/master/img/mac/459061.jpg" itemprop="contentUrl"/>
+                <img src="https://gitee.com/creator_eyw/static/raw/master/img/https/title.png" itemprop="contentUrl"/>
               </a>
             
           
@@ -453,46 +464,86 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>最近自考完，紧绷的神经算是得以放松，也算告一段落了。之前呢，对macOS憧憬已久，用了一周后，感觉进入了新世界，视网膜屏幕、优秀的后台管理机制、完爆windows的终端和触摸板。噫，真香～ </p>
+<p>最近阿里云的备案是终于终于下来了，于是乎高高兴兴地把服务器绑定了域名。但是一个周末过去了，用站长工具一查，泥煤的百度硬是一个页面没收录我的。和同学抱怨了这个事情，他让我整一套https来试一下，毕竟http存在被抓包篡改数据的风险。嘛，也不知道这个是不是百度收录的判定标准，上午整的时候也遇到了一些坑，就记录下来。</p>
 </blockquote>
-<h2 id="进入正题"><a href="#进入正题" class="headerlink" title="进入正题"></a>进入正题</h2><p>说到mac的终端，就不得不说到brew，mac下的一个包管理工具。其功能类似于centOS的yum和ubuntu的apt-get。有了它后就再也不用到处找资源装环境了，一句命令解决之！</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>打开mac终端输入命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
-<p>备注：如果这里提示当前目录不存在，直接回车即创建</p>
-<p>目录：</p>
-<ol>
-<li>brew 安装目录 /usr/local/Cellar</li>
-<li>brew 配置目录 /usr/local/etc</li>
-<li>brew 命令目录 /usr/local/bin </li>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ol>
+<li><strong>服务器</strong>：阿里云ECS</li>
+<li><strong>web容器</strong>： nginx</li>
+<li><strong>系统</strong>：CentOS 7</li>
 </ol>
-<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><ul>
-<li><p>update brew    更新brew</p>
+<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><h3 id="申请SSL"><a href="#申请SSL" class="headerlink" title="申请SSL"></a>申请SSL</h3><ul>
+<li>阿里云申请SSL很简单，直接跑到工作台—&gt;服务与产品—&gt;SSL证书</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h1.png" alt="images"></p>
+<ul>
+<li>进入证书管理界面后点击“购买证书”，如下图所示，选择免费型DV SSL</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h2.png" alt="images"></p>
+<ul>
+<li>申请大概需要5-10分钟左右，随时注意短信邮件，成功后如下图</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h3.png" alt="images"></p>
+<ul>
+<li>点击下载，选择对应自己服务器上的web容器，以下以nginx为例，下载完后解压缩包会有两个文件，一个密钥一个解密的。</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h4.png" alt="images"></p>
+<h3 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h3><p><strong>备注：</strong>打开443端口，打开443端口，打开443端口！重要的事情说三遍，之前我就是因为在阿里云的安全组里没有开启443端口，一直访问不了，至于怎么打开这里就不多阐述了。</p>
+<ul>
+<li><p>把上一步下载得到的pem和key文件传输到服务器</p>
 </li>
-<li><p>brew install [应用名字，如nodejs]    安装环境</p>
-<p>示例：</p>
-<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mac/ter2.png" alt="images"></p>
-</li>
-<li><p>brew list    查看当前安装的列表n</p>
-</li>
-<li><p>brew uninstall [应用名]    卸载应用</p>
-</li>
-<li><p>brew services [command] {应用名}    利用brew来执行应用服务命令</p>
-<p><em>以启动/停止nginx为例</em>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo brew services start/stop/restart nginx</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mac/ter4.png" alt="images"></p>
-<p><em>启动成功，正常访问：</em></p>
-<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mac/ter5.png" alt="images"></p>
-</li>
-<li><p>brew info [应用名字 ]    查看应用安装信息，如安装路径；命令路径等</p>
-<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mac/ter3.png" alt="images"></p>
-<p>以上只是一些常用的功能，更多用法用brew help来查看吧～</p>
+<li><p>vim编辑nginx配置文件，拉到最下面有个 #HTTP server注释字样，配置</p>
 </li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen       443;</span><br><span class="line">      server_name  bandao.ink;</span><br><span class="line">      root         /home/blog/bandao;</span><br><span class="line">      index       index.html  index.htm;</span><br><span class="line">      ssl         on;</span><br><span class="line">      ssl_certificate     /usr/local/nginx/cert/1551693_bandao.ink.pem;</span><br><span class="line">      ssl_certificate_key /usr/local/nginx/cert/1551693_bandao.ink.key;</span><br><span class="line">      ssl_session_timeout 10m;</span><br><span class="line">      ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">      ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">      location / &#123;</span><br><span class="line">          root   /home/blog/bandao;</span><br><span class="line">          index  index.html index.htm;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>server_name：</strong> 服务器地址</li>
+<li><strong>root：</strong>网站根目录</li>
+<li><strong>index：</strong> 入口类</li>
+<li><strong>ssl：</strong>开启ssl配置</li>
+<li><strong>ssl_certificate：</strong>pem文件存放目录</li>
+<li><strong>ssl_certificate_key：</strong>key文件存放目录</li>
+</ul>
+<h3 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a>搜索引擎优化</h3><p>2015 年 5 月 25 日，<a href="http://zhanzhang.baidu.com/wiki/392" target="_blank" rel="noopener">百度发公告声明</a>已全面支持 HTTPS 网页的收录，使用 HTTPS 的网页被认为更安全，所以在排名上会被优先。 百度还推荐使用 301 重定向，把网站的 HTTP 重定向到 HTTPS 。</p>
+<p>NGINX 配置使用 301 重定向：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  www.bandao.ink;</span><br><span class="line">        return    301 https://$server_name$request_uri;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>OK，重启nginx即可重新访问即可看到效果</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h5.png" alt="images"></p>
+<h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><h3 id="nginx-emerg-unknown-directive-ssl错误"><a href="#nginx-emerg-unknown-directive-ssl错误" class="headerlink" title="nginx:[emerg]unknown directive ssl错误"></a>nginx:[emerg]unknown directive ssl错误</h3><p>这是我遇到的第一个坑，在我更新完nginx配置，重启的时候给我报出来，识别不了配置文件中的‘ssl’指令。百度了一下说是因为我们配置这个SSL证书需要引用到nginx的中SSL这模块，然而我们一开始编译的Nginx的时候并没有把SSL模块一起编译进去，所以导致这个错误的出现。</p>
+<h4 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h4><ul>
+<li>开始我以为是要重新安装nginx并编译，但是如果你还能找到nginx当初的安装目录就不用。如下图，我的安装目录当时是和nginx执行目录在一起的，/usr/local/nginx/nginx-1.13.7</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h6.png" alt="images"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/nginx-1.13.7</span><br></pre></td></tr></table></figure>
+<ul>
+<li>来到解压目录后重新添加ssl模块</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-http_ssl_module</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h7.png" alt="images"></p>
+<ul>
+<li>make编译【注意不要make install，不然你nginx会被重新覆盖掉】</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h8.png" alt="images"></p>
+<ul>
+<li>OK，编译时间在半分钟左右，这个时候你会发现当前安装目录下多了一个objs文件夹，这个文件夹下面有一个nginx程序，这个就是新版本的程序了。</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h9.png" alt="images"></p>
+<ul>
+<li>安全起见我们可以把之前的nginx先备份一下，然后把新的程序复制过去覆盖之前的即可</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">备份： cp /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak</span><br><span class="line">覆盖： cp objs/nginx /usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>现在我们可以看看ssl模块是否安装成功</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line">./nginx -V</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h10.png" alt="images"></p>
+<p>如上图，说明安装ssl模块成功了</p>
+<p>ok，重启nginx就可以了</p>
+<h3 id="no-ssl-certificate"><a href="#no-ssl-certificate" class="headerlink" title="no ssl_certificate"></a>no ssl_certificate</h3><p>同样是reload的时候出现nginx: [emerg] no “ssl_certificate” is defined for the “ssl” directive in /usr/local/nginx/conf/nginx.conf:102  这种错误。</p>
+<p>泥煤的，当时就在想，我特么ssl相关的东西都给你配置好了，ssl指令都没问题，你特么一个指定密钥地址的玩意还有问题？ 这个问题整了我一个多小时，最后发现是配置文件里面这里写丢了一个分号，我真是@！%！@¥#@#@¥@！</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/https/h11.png" alt="images"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
-<p>其实brew不帮助你装了软件，还帮你配置了各类环境变量。如此神器，还不快快使用！</p>
+<p>哎，这个东西就因为最后遇到那个分号没有写，足足折腾了我一上午的时间，真的是要细心啊！存粹是自己坑自己</p>
 </blockquote>
-<p>人老了，也健忘，意识到写博客的重要性。人生路漫漫，还需加倍的努力啊。</p>
-<hr>
 
       
     </div>
@@ -508,12 +559,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/11/10/Mac神器-brew安装和使用/">Mac神器-brew安装和使用</a></p>
+  <p><span>本文标题:</span><a href="/2018/11/26/安装https-ssl证书遇到的坑/">安装https-ssl证书遇到的坑</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 JF 的个人博客">JF</a></p>
-  <p><span>发布时间:</span>2018年11月10日 - 10:11</p>
-  <p><span>最后更新:</span>2018年11月12日 - 23:11</p>
-  <p><span>原始链接:</span><a href="/2018/11/10/Mac神器-brew安装和使用/" title="Mac神器-brew安装和使用">http://bandao.ink/2018/11/10/Mac神器-brew安装和使用/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://bandao.ink/2018/11/10/Mac神器-brew安装和使用/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年11月26日 - 12:11</p>
+  <p><span>最后更新:</span>2018年11月26日 - 14:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/26/安装https-ssl证书遇到的坑/" title="安装https-ssl证书遇到的坑">http://bandao.ink/2018/11/26/安装https-ssl证书遇到的坑/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://bandao.ink/2018/11/26/安装https-ssl证书遇到的坑/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> </p>
   <p></p>
@@ -546,9 +597,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mac/" rel="tag"><i class="fa fa-tag"></i> mac</a>
+            <a href="/tags/centos/" rel="tag"><i class="fa fa-tag"></i> centos</a>
           
-            <a href="/tags/brew/" rel="tag"><i class="fa fa-tag"></i> brew</a>
+            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+          
+            <a href="/tags/https/" rel="tag"><i class="fa fa-tag"></i> https</a>
           
         </div>
       
@@ -561,8 +614,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/02/dream/" rel="next" title="北岛以北，樱花绽">
-                <i class="fa fa-chevron-left"></i> 北岛以北，樱花绽
+              <a href="/2018/11/25/FreeMarker学习笔记/" rel="next" title="FreeMarker学习笔记">
+                <i class="fa fa-chevron-left"></i> FreeMarker学习笔记
               </a>
             
           </div>
@@ -570,10 +623,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/12/Linux利用SSH免密登陆和设置别名/" rel="prev" title="Linux利用SSH免密登陆和设置别名">
-                Linux利用SSH免密登陆和设置别名 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -784,7 +833,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入正题"><span class="nav-number">2.</span> <span class="nav-text">进入正题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">4.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本步骤"><span class="nav-number">3.</span> <span class="nav-text">基本步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#申请SSL"><span class="nav-number">3.1.</span> <span class="nav-text">申请SSL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置nginx"><span class="nav-number">3.2.</span> <span class="nav-text">配置nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索引擎优化"><span class="nav-number">3.3.</span> <span class="nav-text">搜索引擎优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的坑"><span class="nav-number">4.</span> <span class="nav-text">遇到的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx-emerg-unknown-directive-ssl错误"><span class="nav-number">4.1.</span> <span class="nav-text">nginx:[emerg]unknown directive ssl错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决步骤"><span class="nav-number">4.1.1.</span> <span class="nav-text">解决步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#no-ssl-certificate"><span class="nav-number">4.2.</span> <span class="nav-text">no ssl_certificate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -958,7 +1007,7 @@
           repo: 'creatorship.github.io',
           owner: 'creatorship',
           admin: ['creatorship'],
-          id: 'Mac神器-brew安装和使用',
+          id: '安装https-ssl证书遇到的坑',
           distractionFreeMode: 'true'
         })
         gitalk.render('gitalk-container')
