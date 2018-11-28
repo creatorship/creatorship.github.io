@@ -108,19 +108,19 @@
 
 
 
-<meta name="description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  【转】数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（">
+<meta name="description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rol">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql的一些笔记">
 <meta property="og:url" content="http://bandao.ink/2018/11/28/Mysql的一些笔记/index.html">
 <meta property="og:site_name" content="blog | 半岛的博客">
-<meta property="og:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  【转】数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（">
+<meta property="og:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rol">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png">
-<meta property="og:updated_time" content="2018-11-28T07:42:26.782Z">
+<meta property="og:updated_time" content="2018-11-28T07:52:08.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql的一些笔记">
-<meta name="twitter:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  【转】数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（">
+<meta name="twitter:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rol">
 <meta name="twitter:image" content="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png">
 
 
@@ -428,7 +428,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" rel="gallery_cjp0v9dem000gi46b93hsccqt"
+                 href="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" rel="gallery_cjp0vgxlx000bj86b7o96ussh"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" itemprop="contentUrl"/>
               </a>
@@ -444,7 +444,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>随便写写，吧啦吧啦，基础还是很重要滴。</p>
 </blockquote>
-<h2 id="【转】数据库事务的特性含义"><a href="#【转】数据库事务的特性含义" class="headerlink" title="【转】数据库事务的特性含义"></a>【转】数据库事务的特性含义</h2><p>数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。</p>
+<h2 id="数据库事务的特性含义"><a href="#数据库事务的特性含义" class="headerlink" title="数据库事务的特性含义"></a>数据库事务的特性含义</h2><p>数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。</p>
 <ul>
 <li><strong>原子性</strong>:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
 <li><strong>一致性</strong>:在事务开始之前和事务结束以后，数据库的完整性约束没有被破坏。</li>
@@ -802,7 +802,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【转】数据库事务的特性含义"><span class="nav-number">2.</span> <span class="nav-text">【转】数据库事务的特性含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接查询"><span class="nav-number">3.</span> <span class="nav-text">连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#inner-join"><span class="nav-number">3.1.</span> <span class="nav-text">inner join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#left-join"><span class="nav-number">3.2.</span> <span class="nav-text">left join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#right-join"><span class="nav-number">3.3.</span> <span class="nav-text">right join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#full-join"><span class="nav-number">3.4.</span> <span class="nav-text">full join</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#union和union-all"><span class="nav-number">4.</span> <span class="nav-text">union和union all</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现full-join"><span class="nav-number">4.1.</span> <span class="nav-text">实现full join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别"><span class="nav-number">4.2.</span> <span class="nav-text">区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库事务的特性含义"><span class="nav-number">2.</span> <span class="nav-text">数据库事务的特性含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接查询"><span class="nav-number">3.</span> <span class="nav-text">连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#inner-join"><span class="nav-number">3.1.</span> <span class="nav-text">inner join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#left-join"><span class="nav-number">3.2.</span> <span class="nav-text">left join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#right-join"><span class="nav-number">3.3.</span> <span class="nav-text">right join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#full-join"><span class="nav-number">3.4.</span> <span class="nav-text">full join</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#union和union-all"><span class="nav-number">4.</span> <span class="nav-text">union和union all</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现full-join"><span class="nav-number">4.1.</span> <span class="nav-text">实现full join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别"><span class="nav-number">4.2.</span> <span class="nav-text">区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
