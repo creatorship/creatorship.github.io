@@ -117,7 +117,7 @@
 <meta property="og:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rol">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png">
-<meta property="og:updated_time" content="2018-11-28T07:52:08.165Z">
+<meta property="og:updated_time" content="2018-11-28T07:52:41.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql的一些笔记">
 <meta name="twitter:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rol">
@@ -428,7 +428,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" rel="gallery_cjp0vgxlx000bj86b7o96ussh"
+                 href="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" rel="gallery_cjp0vhpdu000ajp6bglv6ug7t"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" itemprop="contentUrl"/>
               </a>
@@ -452,7 +452,7 @@
 <li><strong>持久性</strong>:在事务完成以后，该事务所对数据库所作的更改便持久的保存在数据库之中，并不会被回滚。</li>
 </ul>
 <h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><p>之前网上偶然间看了一道面试题“谈谈Mysql各种连接查询的区别”，而我平时工作中一般都是用的left join然后把查询主表放前面，也就是左边。但是这个问题一下子就暴露了我平时写的sql的局限性，然后下面就总结下Mysql的连接查询吧。</p>
-<p>现以下午两张表威为栗子，主表user存储用户基本信息，user_class存储用户班级信息，关联字段为user表的id（对应user_class的user_id字段）</p>
+<p>现以下面两张表威为栗子，主表user存储用户基本信息，user_class存储用户班级信息，关联字段为user表的id（对应user_class的user_id字段）</p>
 <p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/m1.png" alt="images"></p>
 <p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/m2.png" alt="images"></p>
 <h3 id="inner-join"><a href="#inner-join" class="headerlink" title="inner join"></a>inner join</h3><p>即内连接，两张表关联查询的时候保留两张表中完全匹配的结果集</p>
