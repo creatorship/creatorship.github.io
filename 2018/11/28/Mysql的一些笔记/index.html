@@ -90,7 +90,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="线程," />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -108,20 +108,20 @@
 
 
 
-<meta name="description" content="前言 这段时间公司比较闲。出来也两年多了，代码敲地越多，越觉得基础知识有多重要，嘛，闲来无事儿随便捣鼓捣鼓充哈电。  名词解释 进程：是具有一定独立功能的程序，进程是系统资源分配的一个独立单元。 线程：线程进程的一个实体，是CPU调度和分派的基本单位，他是比进程更小的能独立运行的基本单位，线程自己基本上不拥有系统资源(内存)。在运行时，只是暂用一些计数器、寄存器和栈 。 关系：一个进程是一个或多">
-<meta name="keywords" content="线程">
+<meta name="description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  【转】数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="进程和线程的讨论">
-<meta property="og:url" content="http://bandao.ink/2018/11/22/进程和线程的讨论/index.html">
+<meta property="og:title" content="Mysql的一些笔记">
+<meta property="og:url" content="http://bandao.ink/2018/11/28/Mysql的一些笔记/index.html">
 <meta property="og:site_name" content="blog | 半岛的博客">
-<meta property="og:description" content="前言 这段时间公司比较闲。出来也两年多了，代码敲地越多，越觉得基础知识有多重要，嘛，闲来无事儿随便捣鼓捣鼓充哈电。  名词解释 进程：是具有一定独立功能的程序，进程是系统资源分配的一个独立单元。 线程：线程进程的一个实体，是CPU调度和分派的基本单位，他是比进程更小的能独立运行的基本单位，线程自己基本上不拥有系统资源(内存)。在运行时，只是暂用一些计数器、寄存器和栈 。 关系：一个进程是一个或多">
+<meta property="og:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  【转】数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/thread/title.jpg">
-<meta property="og:updated_time" content="2018-11-22T08:04:22.354Z">
+<meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png">
+<meta property="og:updated_time" content="2018-11-28T07:42:26.782Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="进程和线程的讨论">
-<meta name="twitter:description" content="前言 这段时间公司比较闲。出来也两年多了，代码敲地越多，越觉得基础知识有多重要，嘛，闲来无事儿随便捣鼓捣鼓充哈电。  名词解释 进程：是具有一定独立功能的程序，进程是系统资源分配的一个独立单元。 线程：线程进程的一个实体，是CPU调度和分派的基本单位，他是比进程更小的能独立运行的基本单位，线程自己基本上不拥有系统资源(内存)。在运行时，只是暂用一些计数器、寄存器和栈 。 关系：一个进程是一个或多">
-<meta name="twitter:image" content="https://gitee.com/creator_eyw/static/raw/master/img/thread/title.jpg">
+<meta name="twitter:title" content="Mysql的一些笔记">
+<meta name="twitter:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  【转】数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（">
+<meta name="twitter:image" content="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="http://bandao.ink/2018/11/22/进程和线程的讨论/"/>
+  <link rel="canonical" href="http://bandao.ink/2018/11/28/Mysql的一些笔记/"/>
 
 
 
 
 
-  <title>进程和线程的讨论 | blog | 半岛的博客</title>
+  <title>Mysql的一些笔记 | blog | 半岛的博客</title>
   
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://bandao.ink/2018/11/22/进程和线程的讨论/">
+    <link itemprop="mainEntityOfPage" href="http://bandao.ink/2018/11/28/Mysql的一些笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JF">
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">进程和线程的讨论</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql的一些笔记</h1>
         
 
         <div class="post-meta">
@@ -365,8 +365,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T14:24:29+08:00">
-                2018-11-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-28T14:31:29+08:00">
+                2018-11-28
               </time>
             
 
@@ -388,8 +388,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/线程/" itemprop="url" rel="index">
-                    <span itemprop="name">线程</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -428,9 +428,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://gitee.com/creator_eyw/static/raw/master/img/thread/title.jpg" rel="gallery_cjp0v9dev000vi46b07uhuveh"
+                 href="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" rel="gallery_cjp0v9dem000gi46b93hsccqt"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://gitee.com/creator_eyw/static/raw/master/img/thread/title.jpg" itemprop="contentUrl"/>
+                <img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" itemprop="contentUrl"/>
               </a>
             
           
@@ -441,39 +441,85 @@
       
 
       
-        <hr>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>这段时间公司比较闲。出来也两年多了，代码敲地越多，越觉得基础知识有多重要，嘛，闲来无事儿随便捣鼓捣鼓充哈电。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>随便写写，吧啦吧啦，基础还是很重要滴。</p>
 </blockquote>
-<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><ul>
-<li><strong>进程：</strong>是具有一定独立功能的程序，进程是系统资源分配的一个独立单元。</li>
-<li><strong>线程：</strong>线程进程的一个实体，是CPU调度和分派的基本单位，他是比进程更小的能独立运行的基本单位，线程自己基本上不拥有系统资源(内存)。在运行时，只是暂用一些计数器、寄存器和栈 。</li>
-<li><strong>关系：</strong>一个进程是一个或多个线程的容器</li>
-</ul>
-<p>呃，这样说起来可能还是很模糊。</p>
-<p>简单的讲，系统分配资源（内存）的对象是进程，进程外有一层强制隔离的壳，A进程是没有办法访问到B进程的内存的，如果进程之间要进行通信，就必须使用外部手段比如Socket通信等。而真正执行CPU计算任务的是一个又一个线程，线程之间的通信很方便，同一进程下的线程共享全局变量、静态变量等数据- - 我的理解是这样哈，不知道对不对。</p>
-<h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h2><p>现在有一个软件外包公司（虽然我没去过外包公司，逃）</p>
+<h2 id="【转】数据库事务的特性含义"><a href="#【转】数据库事务的特性含义" class="headerlink" title="【转】数据库事务的特性含义"></a>【转】数据库事务的特性含义</h2><p>数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。</p>
 <ul>
-<li><strong>CPU：</strong>外包公司，它就是计算机的CPU，承担了所有计算任务。比如对接新项目、判断是否超过公司能力、计算项目成本、预估项目周期、分派给<strong>合适的项目组</strong>、实施开发、交付项目等等。它就像一个巨大的齿轮，时刻在工作运行。</li>
-<li><strong>进程：</strong>进程就好比项目组，它代表CPU能处理的单个任务。每个项目组能独立地运作，实施独立的工程。</li>
-<li><strong>线程：</strong>线程就是程序猿们，就是具体的一个实体。当然一只猿也可以叫做一个项目组。公司派的任务是分配的项目组的，而具体落实实施的是猿。</li>
-<li><strong>进程间的通信：</strong>首先我们要知道，进程和进程间的内存是很难共享的。比如项目组A有5个程序员，项目组B有10个程序员。项目A的程序员不可能是撸项目B的代码吧，因为你没有项目B代码的git权限。当然如果你实在优秀非要两个项目都做，那么就必须经过XXX协商(进程通信比如Socket)，满足两个项目组的约定后方可进入另一个项目组执行任务。</li>
-<li><strong>线程间的通信：</strong>线程间的通信就简单多了，线程间的数据是非常好共享的。项目组A下面的各个程序员本身在一个组里，我可以看到你提交的代码，你可以看到我提交的代码。</li>
-<li><strong>互斥锁：</strong>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。比如公司的洗手间</li>
-<li><strong>信号量：</strong>进程使用的内存地址可以限定使用量，这些内存地址只能给固定数量的线程使用。比如公司的会议室，最多只能允许20人进去开会，如果满了，就要等人出来才能进去。</li>
-<li><strong>互相影响：</strong>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉。比如说项目组A有个程序员猝死了，我不相信你特么还让其他4个人继续开发，项目组B还没有人猝死，OK继续工作（你是魔鬼吗）</li>
+<li><strong>原子性</strong>:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+<li><strong>一致性</strong>:在事务开始之前和事务结束以后，数据库的完整性约束没有被破坏。</li>
+<li><strong>隔离性</strong>:隔离状态执行事务，使它们好像是<a href="http://www.2cto.com/os/" target="_blank" rel="noopener">系统</a>在给定时间内执行的唯一操作。如果有两个事务，运行在相同的时间内，执行 相同的功能，事务的隔离性将确保每一事务在系统中认为只有该事务在使用系统。这种属性有时称为串行化，为了防止事务操作间的混淆，必须串行化或序列化请 求，使得在同一时间仅有一个请求用于同一数据。</li>
+<li><strong>持久性</strong>:在事务完成以后，该事务所对数据库所作的更改便持久的保存在数据库之中，并不会被回滚。</li>
 </ul>
-<p>总结一下就是进程是线程的老大哥，管理着总多线程小老弟。</p>
-<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p>这里容我无耻的转载一波</p>
-<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/thread/lw.png" alt="images"></p>
+<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><p>之前网上偶然间看了一道面试题“谈谈Mysql各种连接查询的区别”，而我平时工作中一般都是用的left join然后把查询主表放前面，也就是左边。但是这个问题一下子就暴露了我平时写的sql的局限性，然后下面就总结下Mysql的连接查询吧。</p>
+<p>现以下午两张表威为栗子，主表user存储用户基本信息，user_class存储用户班级信息，关联字段为user表的id（对应user_class的user_id字段）</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/m1.png" alt="images"></p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/m2.png" alt="images"></p>
+<h3 id="inner-join"><a href="#inner-join" class="headerlink" title="inner join"></a>inner join</h3><p>即内连接，两张表关联查询的时候保留两张表中完全匹配的结果集</p>
 <ul>
-<li>进程是资源分配的最小单位，线程是程序执行的最小单位。</li>
-<li>进程有自己的独立地址空间，每启动一个进程，系统就会为它分配地址空间，建立数据表来维护代码段、堆栈段和数据段，这种操作非常昂贵。而线程是共享进程中的数据的，使用相同的地址空间，因此CPU切换一个线程的花费远比进程要小很多，同时创建一个线程的开销也比进程要小很多。</li>
-<li>线程之间的通信更方便，同一进程下的线程共享全局变量、静态变量等数据，而进程之间的通信需要以通信的方式（IPC)进行。不过如何处理好同步与互斥是编写多线程程序的难点。</li>
-<li>但是多进程程序更健壮，多线程程序只要有一个线程死掉，整个进程也死掉了，而一个进程死掉并不会对另外一个进程造成影响，因为进程有自己独立的地址空间。</li>
+<li>sql：</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	u.username,</span><br><span class="line">	u.pwd,</span><br><span class="line">	u.type,</span><br><span class="line">	u.create_time,</span><br><span class="line">	c.class_id,</span><br><span class="line">	c.class_name </span><br><span class="line">FROM</span><br><span class="line">	USER u</span><br><span class="line">	INNER JOIN user_class c ON u.id = c.user_id</span><br></pre></td></tr></table></figure>
+<ul>
+<li>结果集：</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/m3.png" alt="images"></p>
+<ul>
+<li>解释：</li>
+</ul>
+<p>如上图所示，主表user通过id关联查询user_class表，会列出其完全匹配的结果集，如若user表中的id字段在user_class中找不到匹配，就不会列出来。</p>
+<h3 id="left-join"><a href="#left-join" class="headerlink" title="left join"></a>left join</h3><p>左连接，在两张表连接查询的时候，会返回左边表所有行，即使右表中没有匹配记录</p>
+<ul>
+<li>sql：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	u.username,</span><br><span class="line">	u.pwd,</span><br><span class="line">	u.type,</span><br><span class="line">	u.create_time,</span><br><span class="line">	c.class_id,</span><br><span class="line">	c.class_name </span><br><span class="line">FROM</span><br><span class="line">	USER u</span><br><span class="line">	LEFT JOIN user_class c ON u.id = c.user_id</span><br></pre></td></tr></table></figure>
+<ul>
+<li>结果集：</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/m4.png" alt="images"></p>
+<ul>
+<li>解释：</li>
+</ul>
+<p>可以看到其实左右连接不想内连接，它是有一个主次关系的。上面的左连接，会以左表为主表，关联查询它与另一张表的所有匹配结果。即使‘三毛’这条数据在另一张表里面没有记录与之匹配</p>
+<h3 id="right-join"><a href="#right-join" class="headerlink" title="right join"></a>right join</h3><p>右连接，与上面的左连接相反，会返回右边表的所有行，即使左边表中没有记录</p>
+<ul>
+<li>sql：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	u.username,</span><br><span class="line">	u.pwd,</span><br><span class="line">	u.type,</span><br><span class="line">	u.create_time,</span><br><span class="line">	c.class_id,</span><br><span class="line">	c.class_name </span><br><span class="line">FROM</span><br><span class="line">	USER u</span><br><span class="line">	RIGHT JOIN user_class c ON u.id = c.user_id</span><br></pre></td></tr></table></figure>
+<ul>
+<li>结果集：</li>
+</ul>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/m5.png" alt="images"></p>
+<ul>
+<li>解释：</li>
+</ul>
+<p>这里可以对比左连接，主次关系变了，现在是以右边的表为主表，关联查询它与另一张表的所有匹配结果。即使user_class表里面id为‘1004’这条数据在另一张表里面没有记录与之匹配</p>
+<h3 id="full-join"><a href="#full-join" class="headerlink" title="full join"></a>full join</h3><p>在两张表连接查询时，会返回左右表所有没有匹配的行</p>
+<ul>
+<li>sql</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	u.username,</span><br><span class="line">	u.pwd,</span><br><span class="line">	u.type,</span><br><span class="line">	u.create_time,</span><br><span class="line">	c.class_id,</span><br><span class="line">	c.class_name </span><br><span class="line">FROM</span><br><span class="line">	USER u</span><br><span class="line">	FULL JOIN user_class c ON u.id = c.user_id</span><br></pre></td></tr></table></figure>
+<ul>
+<li>结果集：</li>
+</ul>
+<p>这里说一下，mysql是不支持全连接的。但是下一节会有相应的解决方案。结果集就是上面左连接右连接的并集</p>
+<h2 id="union和union-all"><a href="#union和union-all" class="headerlink" title="union和union all"></a>union和union all</h2><h3 id="实现full-join"><a href="#实现full-join" class="headerlink" title="实现full join"></a>实现full join</h3><p>union和union all用于把来自多个查询语句的结果组合到一个结果集合中。在多个 SELECT 语句中，对应的列应该具有相同的字段属性，且第一个 SELECT 语句中被使用的字段名称也被用于结果的字段名称。</p>
+<p>ok，有了它我们就可以来实现mysql的full join了</p>
+<p>sql：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">( SELECT</span><br><span class="line">	u.username,</span><br><span class="line">	u.pwd,</span><br><span class="line">	u.type,</span><br><span class="line">	u.create_time,</span><br><span class="line">	c.class_id,</span><br><span class="line">	c.class_name </span><br><span class="line">	FROM</span><br><span class="line">		USER u</span><br><span class="line">		LEFT JOIN user_class c ON u.id = c.user_id </span><br><span class="line">	) UNION</span><br><span class="line">	(</span><br><span class="line">	SELECT</span><br><span class="line">		u.username,</span><br><span class="line">		u.pwd,</span><br><span class="line">		u.type,</span><br><span class="line">		u.create_time,</span><br><span class="line">		c.class_id,</span><br><span class="line">		c.class_name </span><br><span class="line">	FROM</span><br><span class="line">		USER u</span><br><span class="line">	RIGHT JOIN user_class c ON u.id = c.user_id </span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/m6.png" alt="images"></p>
+<p>注意，要保证两个查询的字段匹配。否则会报错。</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>上面为什么不用union all 而用union，是因为union会根据结果集智能地去去处重复值，因为正常来说两个select语句，会返回4+4条记录。但是union帮我们去除了重复的记录，就剩下了5条，而union all不会给我们去重，它很任性，它说它只负责查询，如下图，如果我们用union all 结果集就是这样。</p>
+<p><img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/m7.png" alt="images"></p>
+<p>归纳一下就是</p>
+<ul>
+<li><strong>效率：</strong> union all 比union要快很多，因为union all只是简单地将两个结果集合并后就之就直接返回了。union就很乖巧，在我们进行连接查询的时候会帮我筛选过滤掉重复记录。</li>
+<li><strong>对重复结果的处理：</strong>union在进行表链接后会筛选掉重复的记录，union all不会去除重复记录。</li>
+<li><strong>对排序的处理：</strong>union将会按照字段的顺序进行排序；union all只是简单的将两个结果合并后就返回</li>
+</ul>
+<p>所以要是我们能确定合并的两个结果集中不会有重复的记录就使用union all吧，会快很多。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
-<p>这篇文章感觉写的还是很浅薄。嘛，后面再补充吧</p>
+<p>学然后知不足，教然后知困。知不足，然后能自反也；知困，然后能自强也。</p>
 </blockquote>
 
       
@@ -490,12 +536,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/11/22/进程和线程的讨论/">进程和线程的讨论</a></p>
+  <p><span>本文标题:</span><a href="/2018/11/28/Mysql的一些笔记/">Mysql的一些笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 JF 的个人博客">JF</a></p>
-  <p><span>发布时间:</span>2018年11月22日 - 14:11</p>
-  <p><span>最后更新:</span>2018年11月22日 - 16:11</p>
-  <p><span>原始链接:</span><a href="/2018/11/22/进程和线程的讨论/" title="进程和线程的讨论">http://bandao.ink/2018/11/22/进程和线程的讨论/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://bandao.ink/2018/11/22/进程和线程的讨论/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年11月28日 - 14:11</p>
+  <p><span>最后更新:</span>2018年11月28日 - 15:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/28/Mysql的一些笔记/" title="Mysql的一些笔记">http://bandao.ink/2018/11/28/Mysql的一些笔记/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://bandao.ink/2018/11/28/Mysql的一些笔记/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> </p>
   <p></p>
@@ -528,7 +574,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/线程/" rel="tag"><i class="fa fa-tag"></i> 线程</a>
+            <a href="/tags/mysql/" rel="tag"><i class="fa fa-tag"></i> mysql</a>
           
         </div>
       
@@ -541,8 +587,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/20/OSI七层模型及相关协议学习笔记/" rel="next" title="OSI七层模型及相关协议学习笔记">
-                <i class="fa fa-chevron-left"></i> OSI七层模型及相关协议学习笔记
+              <a href="/2018/11/26/安装https-ssl证书遇到的坑/" rel="next" title="安装https-ssl证书遇到的坑">
+                <i class="fa fa-chevron-left"></i> 安装https-ssl证书遇到的坑
               </a>
             
           </div>
@@ -550,10 +596,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/25/FreeMarker学习笔记/" rel="prev" title="FreeMarker学习笔记">
-                FreeMarker学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -760,7 +802,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名词解释"><span class="nav-number">2.</span> <span class="nav-text">名词解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举个栗子"><span class="nav-number">3.</span> <span class="nav-text">举个栗子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比"><span class="nav-number">4.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【转】数据库事务的特性含义"><span class="nav-number">2.</span> <span class="nav-text">【转】数据库事务的特性含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接查询"><span class="nav-number">3.</span> <span class="nav-text">连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#inner-join"><span class="nav-number">3.1.</span> <span class="nav-text">inner join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#left-join"><span class="nav-number">3.2.</span> <span class="nav-text">left join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#right-join"><span class="nav-number">3.3.</span> <span class="nav-text">right join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#full-join"><span class="nav-number">3.4.</span> <span class="nav-text">full join</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#union和union-all"><span class="nav-number">4.</span> <span class="nav-text">union和union all</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现full-join"><span class="nav-number">4.1.</span> <span class="nav-text">实现full join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区别"><span class="nav-number">4.2.</span> <span class="nav-text">区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -934,7 +976,7 @@
           repo: 'creatorship.github.io',
           owner: 'creatorship',
           admin: ['creatorship'],
-          id: '进程和线程的讨论',
+          id: 'Mysql的一些笔记',
           distractionFreeMode: 'true'
         })
         gitalk.render('gitalk-container')
