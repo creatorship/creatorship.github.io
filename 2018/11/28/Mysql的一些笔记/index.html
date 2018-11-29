@@ -117,7 +117,7 @@
 <meta property="og:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rol">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png">
-<meta property="og:updated_time" content="2018-11-29T01:52:43.143Z">
+<meta property="og:updated_time" content="2018-11-29T01:54:23.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql的一些笔记">
 <meta name="twitter:description" content="前言 随便写写，吧啦吧啦，基础还是很重要滴。  数据库事务的特性含义数据库事务transanction正确执行的四个基本要素。ACID,原子性(Atomicity)、一致性(Correspondence)、隔离性(Isolation)、持久性(Durability)。  原子性:整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（Rol">
@@ -428,7 +428,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" rel="gallery_cjp1y2m00001v5r6bcb6mppz2"
+                 href="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" rel="gallery_cjp1zffzf001wa36bddeuxlsi"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://gitee.com/creator_eyw/static/raw/master/img/mysql/title.png" itemprop="contentUrl"/>
               </a>
@@ -524,7 +524,8 @@
 <p>第二范式（2NF）是在第一范式（1NF）的基础上建立起来的，即满足第二范式（2NF）必须先满足第一范式（1NF）。第二范式（2NF）要求数据库表中的每个实例或行必须可以被惟一地区分。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。这个惟一属性列被称为主关键字或主键、主码。<br>第二范式（2NF）要求实体的属性完全依赖于主关键字。所谓完全依赖是指不能存在仅依赖主关键字一部分的属性，如果存在，那么这个属性和主关键字的这一部分应该分离出来形成一个新的实体，新实体与原实体之间是一对多的关系。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。简而言之，<strong>第二范式就是非主属性非部分依赖于主关键字。</strong></p>
 <p><strong>3 第三范式（3NF）</strong></p>
 <p>满足第三范式（3NF）必须先满足第二范式（2NF）。简而言之，第三范式（3NF）要求一个数据库表中不包含已在其它表中已包含的非主关键字信息。例如，存在一个部门信息表，其中每个部门有部门编号（dept_id）、部门名称、部门简介等信息。那么在员工信息表中列出部门编号后就不能再将部门名称、部门简介等与部门有关的信息再加入员工信息表中。如果不存在部门信息表，则根据第三范式（3NF）也应该构建它，否则就会有大量的数据冗余。简而言之，<strong>第三范式就是属性不依赖于其它非主属性。（我的理解是消除冗余）</strong></p>
-<h2 id="SQL优化"><a href="#SQL优化" class="headerlink" title="SQL优化"></a>SQL优化</h2><ol>
+<h2 id="SQL优化"><a href="#SQL优化" class="headerlink" title="SQL优化"></a>SQL优化</h2><p>以下为转载内容</p>
+<ol>
 <li>应尽量避免在 where 子句中使用!=或&lt;&gt;操作符，否则将引擎放弃使用索引而进行全表扫描。</li>
 <li>应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：<br>select id from t where num is null<br><strong>可以在num上设置默认值0，确保表中num列没有null值</strong>，然后这样查询：<br>select id from t where num=0</li>
 <li>很多时候用 exists 代替 in 是一个好的选择</li>
